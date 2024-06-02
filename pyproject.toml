@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "obs-life-tracker"
+version = "0.1.0"
+description = ""
+authors = ["Matthew Jones"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
+behave = "^1.2.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
