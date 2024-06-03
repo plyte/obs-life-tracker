@@ -11,7 +11,7 @@ def step_impl(context):
 def step_impl(context):
     Player = context.Player
     total = Player.get_life_total("1")
-    assert total != context.previous_life_total
+    assert total.total != context.previous_life_total
 
 @when(u'the user ticks up a life point')
 def step_impl(context):

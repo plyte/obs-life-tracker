@@ -1,4 +1,5 @@
-from ABC import abstractmethod, ABC
+from abc import abstractmethod, ABC
+
 
 class Repository(ABC):
     @abstractmethod
@@ -10,11 +11,11 @@ class Repository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def update(self, item):
+    def update(self, id: str, item):
         raise NotImplementedError
 
     @abstractmethod
-    def create(self, item):
+    def create(self, id: str, item):
         raise NotImplementedError
 
     @abstractmethod
