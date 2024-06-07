@@ -13,9 +13,10 @@ class Life:
         self.life_repository = life_repository
 
     def adjust(self, player_id: str, in_direction: Direction):
-        player = self.life_repository.get_by_id(player_id)
-        if player is None:
+        response = self.life_repository.get_by_id(player_id)
+        if response is None:
             raise UserDoesNotExist()
+        player = Player(**response)
         if in_direction.direction == DirectionEnum.UP:
             self.life_repository.update(player_id, {"total": player.total + 1})
             return player.total + 1
@@ -24,10 +25,10 @@ class Life:
             return player.total - 1
 
     def get(self, player_id: str) -> Player:
-        total = self.life_repository.get_by_id(player_id)
-        if total is None:
+        response = self.life_repository.get_by_id(player_id)
+        if response is None:
             raise UserDoesNotExist()
-        return total
+        return Player(**response)
 
     def update(self, player_id: str, to: int):
         pass

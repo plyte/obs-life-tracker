@@ -7,11 +7,12 @@ def step_impl(context):
     Player.tick_down("1", times=1)
 
 
-@then(u'the lifetotal is updated')
+@then(u'the life total is updated')
 def step_impl(context):
     Player = context.Player
     total = Player.get_life_total("1")
     assert total.total != context.previous_life_total
+
 
 @when(u'the user ticks up a life point')
 def step_impl(context):
