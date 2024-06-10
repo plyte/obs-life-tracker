@@ -1,5 +1,8 @@
 # obs-life-tracker
 
+# Task Tracker
+[Trello](https://trello.com/b/ciuEOQ4o/obs-life-tracker)
+
 # Description
 An open-source obs-plugin to update on-screen life totals for card games. The intent is to provide an end-to-end solution to be able to display life totals from an in-person card game (i.e. Magic The Gathering) and easily integrate that display on a streaming service life OBS. This service consists of three components:
 - GUI
@@ -19,5 +22,24 @@ The DATABASE is the method of storage of the shared state between the server and
 ### OBS Integration
 On a state update for the database, a script is fired to update a source in OBS that then causes the display to update to according life total for the user. 
 
-# Task Tracker
-[Trello](https://trello.com/b/ciuEOQ4o/obs-life-tracker)
+
+# Integration
+```mermaid
+sequenceDiagram
+    GUI ->> SERVER: create_game(number_of_players=2, starting_life_totals=20)
+    SERVER ->> DATABASE: insert(Game)
+    DATABASE -->> SERVER: value inserted
+    SERVER -->> GUI: game created
+    GUI ->> SERVER: increase life total
+    SERVER ->> DATABASE: increment_counter(player_id=x)
+    DATABASE -->> SERVER: counter incremented
+    SERVER -->> GUI: life updated
+    GUI ->> SERVER: decrease life total
+    SERVER ->> DATABASE: decrement_counter(player_id=x)
+    DATABASE -->> SERVER: counter decremented
+    SERVER -->> GUI: life updated
+    GUI ->> SERVER: restart game
+    SERVER ->> DATABASE: set_life_totals(base=20)
+    DATABASE -->> SERVER: update inserted
+    SERVER -->> GUI: game reset
+```
