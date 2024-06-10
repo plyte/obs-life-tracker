@@ -22,11 +22,11 @@ The DATABASE is the method of storage of the shared state between the server and
 ### OBS Integration
 On a state update for the database, a script is fired to update a source in OBS that then causes the display to update to according life total for the user. 
 
-
-# Integration
+# Diagrams
+### Sequence Diagram
 ```mermaid
 sequenceDiagram
-    GUI ->> SERVER: create_game(number_of_players=2, starting_life_totals=20)
+    GUI ->> SERVER: create a game with 2 players and starting life total of 20
     SERVER ->> DATABASE: insert(Game)
     DATABASE -->> SERVER: value inserted
     SERVER -->> GUI: game created
